@@ -1,0 +1,7 @@
+#container{
+    text-align: center;
+    background: linear-gradient(135deg, #333333, #0d0d0d);
+    padding-bottom: 8px;
+    padding-top: 8px;
+    color: white;
+}  

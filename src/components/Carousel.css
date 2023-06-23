@@ -1,0 +1,19 @@
+.carousel-item {
+    align-items: center;
+    /* Alinha verticalmente ao centro */
+    justify-content: center;
+    /* Alinha horizontalmente ao centro */
+    max-height: 80vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.game-image {
+    object-fit: cover;
+    max-height: 100%;
+    width: 100%;
+}
+
+div .carousel-caption {
+    margin-bottom: 280px ;
+}
