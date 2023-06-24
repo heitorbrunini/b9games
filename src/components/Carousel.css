@@ -3,7 +3,7 @@
     /* Alinha verticalmente ao centro */
     justify-content: center;
     /* Alinha horizontalmente ao centro */
-    max-height: 80vh;
+    max-height: 75vh;
     width: 100%;
     overflow: hidden;
 }
@@ -16,4 +16,8 @@
 
 div .carousel-caption {
     margin-bottom: 280px ;
+}
+
+button.active {
+	background-color: #27AE60 !important;
 }

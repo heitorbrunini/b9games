@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import gameImage from '../assets/game1.jpeg';
 import gameImage2 from '../assets/God4.jpg';
+import gameImage3 from '../assets/game3.jpg';
 import "./Carousel.css";
 
 function Carousel() {
@@ -10,6 +11,7 @@ function Carousel() {
             <div className="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div className="carousel-inner">
                 <div className="carousel-item active">
@@ -24,6 +26,13 @@ function Carousel() {
                         <div className="carousel-caption d-none d-md-block">
                             <h2>Lançamentos mais Aguardados.</h2>
                             <p>tenha acesso de forma exclusiva!</p>
+                        </div>
+                </div>
+                <div className="carousel-item">
+                    <img src={gameImage3} className="d-block w-100" alt="..."/>
+                        <div className="carousel-caption d-none d-md-block">
+                            <h2>Multiplayer Desafiador</h2>
+                            <p>Leve suas habilidades ao extremo!</p>
                         </div>
                 </div>
             </div>
