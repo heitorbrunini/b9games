@@ -1,55 +1,57 @@
-import { Card, Stack, CardBody, CardFooter, Image, Heading, Text, Divider, Button, ButtonGroup, Tabs, TabList, Tab, TabIndicator, PinInput, PinInputField } from '@chakra-ui/react'
+import { Card, Stack, CardBody, CardFooter, Image, Heading, Text, Divider, Button, ButtonGroup, Tabs, TabList, Tab, TabIndicator } from '@chakra-ui/react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './games.css';
 import api from '../services/api';
+import React, { useState, useEffect } from 'react';
 
 function Games() {
 
-    api.get("", {
+    const [responseData, setResponseData] = useState(null);
+
+    useEffect(() => {
+      api.get("", {
         headers: {
-            'dev-email-address': 'heitor.brunini@gmail.com'
+          'dev-email-address': 'heitor.brunini@gmail.com'
         }
-    }).then(response => {
-        console.log(response.data);
+      }).then(response => {
+        setResponseData(response.data); // Atualiza o estado com a resposta da API
+        console.log(responseData);
     }).catch(error => {
         console.error(error);
-    });
+      });
+    }, []);
+    
 
     function adicionarCardGame(game) {
-        const gamesArea = document.getElementById('game-area');
-
-        // Cria a div do card-game
+        const gamesArea = document.getElementById('game-area-cards');
         const divCardGame = document.createElement('div');
+
         divCardGame.className = 'col-md-4 card-game';
 
-        // Conteúdo do card-game
+        // Conteúdo do card
         let cardContent = `
           <Card maxW='sm' bg="gray.800" color={"white"}>
             <CardBody>
                 <Image
                     src='${game.thumbnail}'
-                    alt='Green double couch with wooden legs'
+                    alt='${game.title}'
                     borderRadius='lg'
                 />
                 <Stack mt='6' spacing='3'>
-                    <Heading size='md'>Overwatch 2</Heading>
-                    <Text>
-                        A hero-focused first-person team shooter from Blizzard Entertainment.
-                    </Text>
-                    <Text color='green.300' fontSize='2xl'>
-                        Blizzard Entertainment
-                    </Text>
+                    <Heading size='md'>${game.title}</Heading>
+                    <Text>${game.short_description}</Text>
+                    <Text color='green.300' fontSize='2xl'>${game.developer}</Text>
                 </Stack>
             </CardBody>
             <Divider />
             <CardFooter>
                 <ButtonGroup spacing='2'>
                     <Button variant='solid' colorScheme='green'>
-                        See More
+                        <a href='${game.freetogame_profile_url}'>See More
                     </Button>
                     <Button variant='ghost' colorScheme='green'>
-                        PC (Windows)
+                        ${game.platform}
                     </Button>
                 </ButtonGroup>
             </CardFooter>
@@ -57,15 +59,13 @@ function Games() {
         `;
 
         divCardGame.innerHTML = cardContent;
-
-        // Adiciona a div ao elemento pai
         gamesArea.appendChild(divCardGame);
     }
 
     return (
         <div id="game-area">
 
-            <div class="container">
+            <div class="container" id='game-area-cards'>
                 <div class="row">
                     <div class="col-12">
                         <h3 id="main-title">Categorias
@@ -126,219 +126,209 @@ function Games() {
 
                         <hr />
                     </div>
-                    <div id='game-area'>
-                        <div className="col-md-4 card-game">
-                            <Card maxW='sm' bg="gray.800" color={"white"}>
-                                <CardBody>
-                                    <Image
-                                        src='https://www.freetogame.com/g/540/thumbnail.jpg'
-                                        alt='Green double couch with wooden legs'
-                                        borderRadius='lg'
-                                    />
-                                    <Stack mt='6' spacing='3'>
-                                        <Heading size='md'>Overwatch 2</Heading>
-                                        <Text>
-                                            A hero-focused first-person team shooter from Blizzard Entertainment.
-                                        </Text>
-                                        <Text color='green.300' fontSize='2xl'>
-                                            Blizzard Entertainment
-                                        </Text>
-                                    </Stack>
-                                </CardBody>
-                                <Divider />
-                                <CardFooter>
-                                    <ButtonGroup spacing='2'>
-                                        <Button variant='solid' colorScheme='green'>
-                                            See More
-                                        </Button>
-                                        <Button variant='ghost' colorScheme='green'>
-                                            PC (Windows)
-                                        </Button>
-                                    </ButtonGroup>
-                                </CardFooter>
-                            </Card>
 
-                        </div>
+                    <div className="col-md-4 card-game">
+                        <Card maxW='sm' bg="gray.800" color={"white"}>
+                            <CardBody>
+                                <Image
+                                    src='https://www.freetogame.com/g/540/thumbnail.jpg'
+                                    alt='Green double couch with wooden legs'
+                                    borderRadius='lg'
+                                />
+                                <Stack mt='6' spacing='3'>
+                                    <Heading size='md'>Overwatch 2</Heading>
+                                    <Text>
+                                        A hero-focused first-person team shooter from Blizzard Entertainment.
+                                    </Text>
+                                    <Text color='green.300' fontSize='2xl'>
+                                        Blizzard Entertainment
+                                    </Text>
+                                </Stack>
+                            </CardBody>
+                            <Divider />
+                            <CardFooter>
+                                <ButtonGroup spacing='2'>
+                                    <Button variant='solid' colorScheme='green'>
+                                        See More
+                                    </Button>
+                                    <Button variant='ghost' colorScheme='green'>
+                                        PC (Windows)
+                                    </Button>
+                                </ButtonGroup>
+                            </CardFooter>
+                        </Card>
 
-                        <div className="col-md-4 card-game">
-                            <Card maxW='sm' bg="gray.800" color={"white"}>
-                                <CardBody>
-                                    <Image
-                                        src='https://www.freetogame.com/g/540/thumbnail.jpg'
-                                        alt='Green double couch with wooden legs'
-                                        borderRadius='lg'
-                                    />
-                                    <Stack mt='6' spacing='3'>
-                                        <Heading size='md'>Overwatch 2</Heading>
-                                        <Text>
-                                            A hero-focused first-person team shooter from Blizzard Entertainment.
-                                        </Text>
-                                        <Text color='green.300' fontSize='2xl'>
-                                            Blizzard Entertainment
-                                        </Text>
-                                    </Stack>
-                                </CardBody>
-                                <Divider />
-                                <CardFooter>
-                                    <ButtonGroup spacing='2'>
-                                        <Button variant='solid' colorScheme='green'>
-                                            See More
-                                        </Button>
-                                        <Button variant='ghost' colorScheme='green'>
-                                            PC (Windows)
-                                        </Button>
-                                    </ButtonGroup>
-                                </CardFooter>
-                            </Card>
-
-                        </div>
-
-                        <div className="col-md-4 card-game">
-                            <Card maxW='sm' bg="gray.800" color={"white"}>
-                                <CardBody>
-                                    <Image
-                                        src='https://www.freetogame.com/g/540/thumbnail.jpg'
-                                        alt='Green double couch with wooden legs'
-                                        borderRadius='lg'
-                                    />
-                                    <Stack mt='6' spacing='3'>
-                                        <Heading size='md'>Overwatch 2</Heading>
-                                        <Text>
-                                            A hero-focused first-person team shooter from Blizzard Entertainment.
-                                        </Text>
-                                        <Text color='green.300' fontSize='2xl'>
-                                            Blizzard Entertainment
-                                        </Text>
-                                    </Stack>
-                                </CardBody>
-                                <Divider />
-                                <CardFooter>
-                                    <ButtonGroup spacing='2'>
-                                        <Button variant='solid' colorScheme='green'>
-                                            See More
-                                        </Button>
-                                        <Button variant='ghost' colorScheme='green'>
-                                            PC (Windows)
-                                        </Button>
-                                    </ButtonGroup>
-                                </CardFooter>
-                            </Card>
-
-                        </div>
-
-                        <div className="col-md-4 card-game">
-                            <Card maxW='sm' bg="gray.800" color={"white"}>
-                                <CardBody>
-                                    <Image
-                                        src='https://www.freetogame.com/g/540/thumbnail.jpg'
-                                        alt='Green double couch with wooden legs'
-                                        borderRadius='lg'
-                                    />
-                                    <Stack mt='6' spacing='3'>
-                                        <Heading size='md'>Overwatch 2</Heading>
-                                        <Text>
-                                            A hero-focused first-person team shooter from Blizzard Entertainment.
-                                        </Text>
-                                        <Text color='green.300' fontSize='2xl'>
-                                            Blizzard Entertainment
-                                        </Text>
-                                    </Stack>
-                                </CardBody>
-                                <Divider />
-                                <CardFooter>
-                                    <ButtonGroup spacing='2'>
-                                        <Button variant='solid' colorScheme='green'>
-                                            See More
-                                        </Button>
-                                        <Button variant='ghost' colorScheme='green'>
-                                            PC (Windows)
-                                        </Button>
-                                    </ButtonGroup>
-                                </CardFooter>
-                            </Card>
-
-                        </div>
-
-                        <div className="col-md-4 card-game">
-                            <Card maxW='sm' bg="gray.800" color={"white"}>
-                                <CardBody>
-                                    <Image
-                                        src='https://www.freetogame.com/g/540/thumbnail.jpg'
-                                        alt='Green double couch with wooden legs'
-                                        borderRadius='lg'
-                                    />
-                                    <Stack mt='6' spacing='3'>
-                                        <Heading size='md'>Overwatch 2</Heading>
-                                        <Text>
-                                            A hero-focused first-person team shooter from Blizzard Entertainment.
-                                        </Text>
-                                        <Text color='green.300' fontSize='2xl'>
-                                            Blizzard Entertainment
-                                        </Text>
-                                    </Stack>
-                                </CardBody>
-                                <Divider />
-                                <CardFooter>
-                                    <ButtonGroup spacing='2'>
-                                        <Button variant='solid' colorScheme='green'>
-                                            See More
-                                        </Button>
-                                        <Button variant='ghost' colorScheme='green'>
-                                            PC (Windows)
-                                        </Button>
-                                    </ButtonGroup>
-                                </CardFooter>
-                            </Card>
-
-                        </div>
-
-                        <div className="col-md-4 card-game">
-                            <Card maxW='sm' bg="gray.800" color={"white"}>
-                                <CardBody>
-                                    <Image
-                                        src='https://www.freetogame.com/g/540/thumbnail.jpg'
-                                        alt='Green double couch with wooden legs'
-                                        borderRadius='lg'
-                                    />
-                                    <Stack mt='6' spacing='3'>
-                                        <Heading size='md'>Overwatch 2</Heading>
-                                        <Text>
-                                            A hero-focused first-person team shooter from Blizzard Entertainment.
-                                        </Text>
-                                        <Text color='green.300' fontSize='2xl'>
-                                            Blizzard Entertainment
-                                        </Text>
-                                    </Stack>
-                                </CardBody>
-                                <Divider />
-                                <CardFooter>
-                                    <ButtonGroup spacing='2'>
-                                        <Button variant='solid' colorScheme='green'>
-                                            See More
-                                        </Button>
-                                        <Button variant='ghost' colorScheme='green'>
-                                            PC (Windows)
-                                        </Button>
-                                    </ButtonGroup>
-                                </CardFooter>
-                            </Card>
-
-                        </div>
                     </div>
 
+                    <div className="col-md-4 card-game">
+                        <Card maxW='sm' bg="gray.800" color={"white"}>
+                            <CardBody>
+                                <Image
+                                    src='https://www.freetogame.com/g/540/thumbnail.jpg'
+                                    alt='Green double couch with wooden legs'
+                                    borderRadius='lg'
+                                />
+                                <Stack mt='6' spacing='3'>
+                                    <Heading size='md'>Overwatch 2</Heading>
+                                    <Text>
+                                        A hero-focused first-person team shooter from Blizzard Entertainment.
+                                    </Text>
+                                    <Text color='green.300' fontSize='2xl'>
+                                        Blizzard Entertainment
+                                    </Text>
+                                </Stack>
+                            </CardBody>
+                            <Divider />
+                            <CardFooter>
+                                <ButtonGroup spacing='2'>
+                                    <Button variant='solid' colorScheme='green'>
+                                        See More
+                                    </Button>
+                                    <Button variant='ghost' colorScheme='green'>
+                                        PC (Windows)
+                                    </Button>
+                                </ButtonGroup>
+                            </CardFooter>
+                        </Card>
+
+                    </div>
+
+                    <div className="col-md-4 card-game">
+                        <Card maxW='sm' bg="gray.800" color={"white"}>
+                            <CardBody>
+                                <Image
+                                    src='https://www.freetogame.com/g/540/thumbnail.jpg'
+                                    alt='Green double couch with wooden legs'
+                                    borderRadius='lg'
+                                />
+                                <Stack mt='6' spacing='3'>
+                                    <Heading size='md'>Overwatch 2</Heading>
+                                    <Text>
+                                        A hero-focused first-person team shooter from Blizzard Entertainment.
+                                    </Text>
+                                    <Text color='green.300' fontSize='2xl'>
+                                        Blizzard Entertainment
+                                    </Text>
+                                </Stack>
+                            </CardBody>
+                            <Divider />
+                            <CardFooter>
+                                <ButtonGroup spacing='2'>
+                                    <Button variant='solid' colorScheme='green'>
+                                        See More
+                                    </Button>
+                                    <Button variant='ghost' colorScheme='green'>
+                                        PC (Windows)
+                                    </Button>
+                                </ButtonGroup>
+                            </CardFooter>
+                        </Card>
+
+                    </div>
+
+                    <div className="col-md-4 card-game">
+                        <Card maxW='sm' bg="gray.800" color={"white"}>
+                            <CardBody>
+                                <Image
+                                    src='https://www.freetogame.com/g/540/thumbnail.jpg'
+                                    alt='Green double couch with wooden legs'
+                                    borderRadius='lg'
+                                />
+                                <Stack mt='6' spacing='3'>
+                                    <Heading size='md'>Overwatch 2</Heading>
+                                    <Text>
+                                        A hero-focused first-person team shooter from Blizzard Entertainment.
+                                    </Text>
+                                    <Text color='green.300' fontSize='2xl'>
+                                        Blizzard Entertainment
+                                    </Text>
+                                </Stack>
+                            </CardBody>
+                            <Divider />
+                            <CardFooter>
+                                <ButtonGroup spacing='2'>
+                                    <Button variant='solid' colorScheme='green'>
+                                        See More
+                                    </Button>
+                                    <Button variant='ghost' colorScheme='green'>
+                                        PC (Windows)
+                                    </Button>
+                                </ButtonGroup>
+                            </CardFooter>
+                        </Card>
+
+                    </div>
+
+                    <div className="col-md-4 card-game">
+                        <Card maxW='sm' bg="gray.800" color={"white"}>
+                            <CardBody>
+                                <Image
+                                    src='https://www.freetogame.com/g/540/thumbnail.jpg'
+                                    alt='Green double couch with wooden legs'
+                                    borderRadius='lg'
+                                />
+                                <Stack mt='6' spacing='3'>
+                                    <Heading size='md'>Overwatch 2</Heading>
+                                    <Text>
+                                        A hero-focused first-person team shooter from Blizzard Entertainment.
+                                    </Text>
+                                    <Text color='green.300' fontSize='2xl'>
+                                        Blizzard Entertainment
+                                    </Text>
+                                </Stack>
+                            </CardBody>
+                            <Divider />
+                            <CardFooter>
+                                <ButtonGroup spacing='2'>
+                                    <Button variant='solid' colorScheme='green'>
+                                        See More
+                                    </Button>
+                                    <Button variant='ghost' colorScheme='green'>
+                                        PC (Windows)
+                                    </Button>
+                                </ButtonGroup>
+                            </CardFooter>
+                        </Card>
+
+                    </div>
+
+                    <div className="col-md-4 card-game">
+                        <Card maxW='sm' bg="gray.800" color={"white"}>
+                            <CardBody>
+                                <Image
+                                    src='https://www.freetogame.com/g/540/thumbnail.jpg'
+                                    alt='Green double couch with wooden legs'
+                                    borderRadius='lg'
+                                />
+                                <Stack mt='6' spacing='3'>
+                                    <Heading size='md'>Overwatch 2</Heading>
+                                    <Text>
+                                        A hero-focused first-person team shooter from Blizzard Entertainment.
+                                    </Text>
+                                    <Text color='green.300' fontSize='2xl'>
+                                        Blizzard Entertainment
+                                    </Text>
+                                </Stack>
+                            </CardBody>
+                            <Divider />
+                            <CardFooter>
+                                <ButtonGroup spacing='2'>
+                                    <Button variant='solid' colorScheme='green'>
+                                        See More
+                                    </Button>
+                                    <Button variant='ghost' colorScheme='green'>
+                                        PC (Windows)
+                                    </Button>
+                                </ButtonGroup>
+                            </CardFooter>
+                        </Card>
+
+                    </div>
+
+
                 </div>
-
-                <div id='input-fild'>
-                    <PinInput color={"white"} defaultValue='123'>
-                        <PinInputField />
-                        <PinInputField marginLeft={'7px'} />
-                        <PinInputField marginLeft={'7px'} />
-                    </PinInput>
-                </div>
-
-
-
             </div>
+
         </div>
     )
 }
