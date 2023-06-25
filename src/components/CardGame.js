@@ -1,7 +1,6 @@
 import { Card, Stack, CardBody, CardFooter, Image, Heading, Text, Divider, Button, ButtonGroup} from '@chakra-ui/react';
 
 function CardGame({game}) {
-    console.log(game);
     return (
         <div className="col-md-4 card-game">
             <Card maxW='sm' height={"600px"} bg="gray.800" color={"white"} >

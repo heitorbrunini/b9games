@@ -1,4 +1,4 @@
-import { Tabs, TabList, Tab, TabIndicator,CircularProgress} from '@chakra-ui/react'
+import { Tabs, TabList, Tab, TabIndicator, CircularProgress } from '@chakra-ui/react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './games.css';
@@ -10,28 +10,58 @@ import Pageholders from "./Pageholders";
 function Games() {
 
     const [responseData, setResponseData] = useState(null);
-    const [hideload,SetHideLoad]= useState("visible");
+    const [hideload, SetHideLoad] = useState("visible");
+    const [Error, SetError] = useState(null);
+
 
     useEffect(() => {
         api.get("", {
             headers: {
                 'dev-email-address': 'heitor.brunini@gmail.com'
-            }
+            },
+            timeout: 5000
         }).then(response => {
             setResponseData(response.data); // Atualiza o estado com a resposta da API
-            SetHideLoad("hidden");
         }).catch(error => {
-            console.error(error);
+            SetError(error);
+        }).finally(()=>{
+            SetHideLoad("hidden");
         });
+
     }, []);
 
-    
+
     const [number, setNumber] = useState(0);
-    let count = number + 9 ;
+    let count = number + 9;
     let items = [];
 
-    responseData !== null ? responseData.slice(number,count).forEach(Game => { items.push(<CardGame game={Game} />)  } ) : console.log("resposta vazia");
+    responseData !== null ? responseData.slice(number, count).forEach(Game => { items.push(<CardGame game={Game} />) }) : console.log("resposta vazia");
 
+    function component(Error, items) {
+
+        if (Error) {
+
+            if (Error.message === "Timeout of 5000ms exceeded"){
+                return "O servidor demorou para responder, tente mais tarde"
+            }
+
+            switch (Error.response.status) {
+                case 500:
+                case 502:
+                case 503:
+                case 504:
+                case 507:
+                case 508:
+                case 509:
+
+                    return "O servidor falhou em responder, tente recarregar a página";
+                default:
+                    return "O servidor não conseguirá responder por agora, tente voltar novamente mais tarde";
+            }
+        } else {
+            return items;
+        }
+    }
 
     return (
         <div id="game-area">
@@ -41,7 +71,7 @@ function Games() {
                     <div class="col-12">
                         <h3 id="main-title">Categorias
                         </h3>
-                        <div id='game-tabs' class="overflow-auto">
+                        <div id='game-tabs' style={{ maxWidth: "100%", overflowX: "auto" }}>
                             <Tabs position="relative" variant="unstyled" defaultIndex={0}>
                                 <TabList justifyContent="center" colorScheme="green">
                                     <Tab color="green.700"
@@ -98,11 +128,11 @@ function Games() {
                         <hr />
                         <CircularProgress visibility={hideload} isIndeterminate color='green.300' />
                     </div>
-                  
-                    {items}
+
+                    {component(Error, items)}
 
                     <div class="col-12 d-flex justify-content-center align-items-center" id='pageh'>
-                        <Pageholders setFirstGame= {setNumber} lastGameIndex ={count}/>
+                        <Pageholders setFirstGame={setNumber} />
                     </div>
 
                 </div>
