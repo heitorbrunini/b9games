@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './NavBar.css'
+import SideNav from "./SideNav" 
 
 function NavBar() {
   return (
@@ -12,7 +13,7 @@ function NavBar() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle"  href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Categorias
               </a>
               <ul className="dropdown-menu">
@@ -32,8 +33,13 @@ function NavBar() {
 
         </div>
 
-      </div>
+        <div class="d-flex">
+          <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-label="Toggle navigation">
+            <SideNav/>
+          </button>
+        </div>
 
+      </div>
     </nav>
   );
 }

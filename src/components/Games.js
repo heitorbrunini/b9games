@@ -5,10 +5,14 @@ import './games.css';
 import api from '../services/api';
 import React, { useState, useEffect } from 'react';
 import CardGame from "./CardGame";
+import Pageholders from "./Pageholders";
 
 function Games() {
 
     const [responseData, setResponseData] = useState(null);
+
+    
+
 
     useEffect(() => {
         api.get("", {
@@ -22,6 +26,12 @@ function Games() {
         });
     }, []);
 
+    let items = [];
+
+    for (let number = 0; number <= 5; number++) {
+        responseData !== null ? items.push(<CardGame game={responseData[number]} />) : console.log("deu ruim")
+    }
+
     return (
         <div id="game-area">
 
@@ -30,7 +40,7 @@ function Games() {
                     <div class="col-12">
                         <h3 id="main-title">Categorias
                         </h3>
-                        <div id='game-tabs'>
+                        <div id='game-tabs' class="overflow-auto">
                             <Tabs position="relative" variant="unstyled" defaultIndex={0}>
                                 <TabList justifyContent="center" colorScheme="green">
                                     <Tab color="green.700"
@@ -87,11 +97,17 @@ function Games() {
                         <hr />
                     </div>
 
+
                     
-                    { responseData !== null? <CardGame game = {responseData[0]}/>:console.log("deu ruim")}
-                   
+                    {items}
+
+                    <div class="col-12 d-flex justify-content-center align-items-center" id='pageh'>
+                        <Pageholders />
+                    </div>
 
                 </div>
+
+
             </div>
 
         </div>
