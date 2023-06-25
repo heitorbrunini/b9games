@@ -1,13 +1,14 @@
 import Pagination from 'react-bootstrap/Pagination';
 
-function Pageholders({ Action }) {
+function Pageholders({ setFirstGame, lastGameIndex  }) {
 
   let active = 1;
   let items = [];
+  
 
   for (let number = 1; number <= 5; number++) {
     items.push(
-      <Pagination.Item onClick={Action} key={number} active={number === active} >
+      <Pagination.Item key={number} onClick={()=>{ number!==1? setFirstGame(9 * (number-1)) :setFirstGame(0); }} active={number === active} >
         {number}
       </Pagination.Item>,
     );

@@ -1,4 +1,4 @@
-import { Tabs, TabList, Tab, TabIndicator } from '@chakra-ui/react'
+import { Tabs, TabList, Tab, TabIndicator,CircularProgress} from '@chakra-ui/react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './games.css';
@@ -10,9 +10,7 @@ import Pageholders from "./Pageholders";
 function Games() {
 
     const [responseData, setResponseData] = useState(null);
-
-    
-
+    const [hideload,SetHideLoad]= useState("visible");
 
     useEffect(() => {
         api.get("", {
@@ -21,16 +19,19 @@ function Games() {
             }
         }).then(response => {
             setResponseData(response.data); // Atualiza o estado com a resposta da API
+            SetHideLoad("hidden");
         }).catch(error => {
             console.error(error);
         });
     }, []);
 
+    
+    const [number, setNumber] = useState(0);
+    let count = number + 9 ;
     let items = [];
 
-    for (let number = 0; number <= 5; number++) {
-        responseData !== null ? items.push(<CardGame game={responseData[number]} />) : console.log("deu ruim")
-    }
+    responseData !== null ? responseData.slice(number,count).forEach(Game => { items.push(<CardGame game={Game} />)  } ) : console.log("resposta vazia");
+
 
     return (
         <div id="game-area">
@@ -95,14 +96,13 @@ function Games() {
                         </div>
 
                         <hr />
+                        <CircularProgress visibility={hideload} isIndeterminate color='green.300' />
                     </div>
-
-
-                    
+                  
                     {items}
 
                     <div class="col-12 d-flex justify-content-center align-items-center" id='pageh'>
-                        <Pageholders />
+                        <Pageholders setFirstGame= {setNumber} lastGameIndex ={count}/>
                     </div>
 
                 </div>
