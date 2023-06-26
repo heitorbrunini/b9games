@@ -1,9 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './NavBar.css'
-import SideNav from "./SideNav" 
+import SideNav from "./SideNav"
+import { Input, Button, InputGroup, InputRightElement } from '@chakra-ui/react'
+import { FiSearch } from 'react-icons/fi';
+import React, { useState } from 'react';
 
 function NavBar() {
+
+  const [nameGame, setName] = useState(null);
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary  border-bottom border-bottom-dark" data-bs-theme="dark">
       <div className="container-fluid">
@@ -27,15 +33,21 @@ function NavBar() {
           </ul>
 
           <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-success" type="submit">Search</button>
+            <InputGroup size='md'>
+              <Input color={'white'} onChange={(e) => setName(e.target.value)} placeholder='Pesquisar ...' />
+              <InputRightElement width='4.5rem'>
+                <Button colorScheme='green' variant='outline' onClick={() => console.log(nameGame)}>
+                  <FiSearch />
+                </Button>
+              </InputRightElement>
+            </InputGroup>
           </form>
 
         </div>
 
         <div class="d-flex">
           <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-label="Toggle navigation">
-            <SideNav/>
+            <SideNav />
           </button>
         </div>
 

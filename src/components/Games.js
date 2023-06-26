@@ -1,4 +1,4 @@
-import { Tabs, TabList, Tab, TabIndicator, CircularProgress } from '@chakra-ui/react'
+import { Spinner,TabIndicator,Tab,TabList,Tabs} from '@chakra-ui/react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './games.css';
@@ -24,7 +24,7 @@ function Games() {
             setResponseData(response.data); // Atualiza o estado com a resposta da API
         }).catch(error => {
             SetError(error);
-        }).finally(()=>{
+        }).finally(() => {
             SetHideLoad("hidden");
         });
 
@@ -34,30 +34,36 @@ function Games() {
     const [number, setNumber] = useState(0);
     let count = number + 9;
     let items = [];
+    let genres =[];
 
-    responseData !== null ? responseData.slice(number, count).forEach(Game => { items.push(<CardGame game={Game} />) }) : console.log("resposta vazia");
+    if (responseData !== null) {
+        responseData.slice(number, count).forEach(Game => {
+            items.push(<CardGame game={Game} />);
+            genres.push(Game.genre);
+        })
+    } 
 
     function component(Error, items) {
 
         if (Error) {
 
-            if (Error.message === "Timeout of 5000ms exceeded"){
+            try {
+                switch (Error.response.status) {
+                    case 500:
+                    case 502:
+                    case 503:
+                    case 504:
+                    case 507:
+                    case 508:
+                    case 509:
+                        return "O servidor falhou em responder, tente recarregar a página";
+                    default:
+                        return "O servidor não conseguirá responder por agora, tente voltar novamente mais tarde";
+                }
+            } catch (e) {
                 return "O servidor demorou para responder, tente mais tarde"
             }
 
-            switch (Error.response.status) {
-                case 500:
-                case 502:
-                case 503:
-                case 504:
-                case 507:
-                case 508:
-                case 509:
-
-                    return "O servidor falhou em responder, tente recarregar a página";
-                default:
-                    return "O servidor não conseguirá responder por agora, tente voltar novamente mais tarde";
-            }
         } else {
             return items;
         }
@@ -68,10 +74,10 @@ function Games() {
 
             <div class="container" id='game-area-cards'>
                 <div class="row">
-                    <div class="col-12">
+                <div class="col-12">
                         <h3 id="main-title">Categorias
                         </h3>
-                        <div id='game-tabs' style={{ maxWidth: "100%", overflowX: "auto" }}>
+                        <div id='game-tabs' class="overflow-auto">
                             <Tabs position="relative" variant="unstyled" defaultIndex={0}>
                                 <TabList justifyContent="center" colorScheme="green">
                                     <Tab color="green.700"
@@ -126,7 +132,7 @@ function Games() {
                         </div>
 
                         <hr />
-                        <CircularProgress visibility={hideload} isIndeterminate color='green.300' />
+                        <Spinner visibility={hideload} color='green.300' size='xl' />
                     </div>
 
                     {component(Error, items)}
