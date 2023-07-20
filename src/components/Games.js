@@ -17,7 +17,8 @@ function Games() {
     useEffect(() => {
         api.get("", {
             headers: {
-                'dev-email-address': 'heitor.brunini@gmail.com'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET'
             },
             timeout: 5000
         }).then(response => {
