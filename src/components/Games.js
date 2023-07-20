@@ -1,4 +1,4 @@
-import { Spinner,TabIndicator,Tab,TabList,Tabs} from '@chakra-ui/react'
+import { Spinner, TabIndicator, Tab, TabList, Tabs } from '@chakra-ui/react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './games.css';
@@ -13,12 +13,12 @@ function Games() {
     const [hideload, SetHideLoad] = useState("visible");
     const [Error, SetError] = useState(null);
 
-
+    
     useEffect(() => {
         api.get("", {
             headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET'
+                'X-RapidAPI-Key': 'eeb484ed46mshbe7288b63230bd5p1924efjsn40f4117eb1d0',
+                'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
             },
             timeout: 5000
         }).then(response => {
@@ -35,14 +35,14 @@ function Games() {
     const [number, setNumber] = useState(0);
     let count = number + 9;
     let items = [];
-    let genres =[];
+    let genres = [];
 
     if (responseData !== null) {
         responseData.slice(number, count).forEach(Game => {
             items.push(<CardGame game={Game} />);
             genres.push(Game.genre);
         })
-    } 
+    }
 
     function component(Error, items) {
 
@@ -75,7 +75,7 @@ function Games() {
 
             <div class="container" id='game-area-cards'>
                 <div class="row">
-                <div class="col-12">
+                    <div class="col-12">
                         <h3 id="main-title">Categorias
                         </h3>
                         <div id='game-tabs' class="overflow-auto">
