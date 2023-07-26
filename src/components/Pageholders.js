@@ -2,25 +2,27 @@ import Pagination from 'react-bootstrap/Pagination';
 import React, { useState } from 'react';
 
 function Pageholders({ setFirstGame }) {
+  const pageSize = 9;
+  const [active, setActive] = useState(1);
 
-  let [active, SetActive] = useState(1);
-  let items = [];
-  
   const handlePaginationItemClick = (number) => {
-    SetActive(number);
+    setActive(number);
     if (number !== 1) {
-      setFirstGame(9 * (number - 1));
+      setFirstGame(pageSize * (number - 1));
     } else {
       setFirstGame(0);
     }
-    window.scrollBy(0, -1600); // Scroll de 400px para cima
+    window.scrollBy(0, -400); // Scroll de 400px para cima
   };
 
-  for (let number = 1; number <= 5; number++) {
+  const items = [];
+
+  // Lógica para criar os números de página
+  for (let number = active; number < active + 5; number++) {
     items.push(
-      <Pagination.Item key={number} onClick={() => handlePaginationItemClick(number)} active={number === active} >
+      <Pagination.Item key={number} onClick={() => handlePaginationItemClick(number)} active={number === active}>
         {number}
-      </Pagination.Item>,
+      </Pagination.Item>
     );
   }
 
@@ -28,7 +30,7 @@ function Pageholders({ setFirstGame }) {
     <div data-bs-theme="dark">
       <Pagination size="lg">{items}</Pagination>
     </div>
-  )
+  );
 }
 
 export default Pageholders;
