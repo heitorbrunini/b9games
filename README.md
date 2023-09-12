@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+<div  align="center">
+<!-- Top Image and Title -->
+<h1>
+<img  src="https://raw.githubusercontent.com/heitorbrunini/b9games/master/image/Captura%20de%20tela%202023-06-25%20230248.png)"  width="300px"><br/>
+</h1>
+<!-- Subtitle/Description -->
+<h4>B9 games é um site de redirecionamento para o site oficial de jogos famosos.</h4>
+<p>
+<!-- Image Shields -->
+<img  alt="Language Top"  src="https://img.shields.io/github/languages/top/heitorbrunini/b9games">
+<img  alt="Languages Count"  src="https://img.shields.io/github/languages/count/heitorbrunini/b9games">
+<img  alt="Last Commit"  src="https://img.shields.io/github/last-commit/heitorbrunini/b9games">
+<img  alt="Repo Size"  src="https://img.shields.io/github/repo-size/heitorbrunini/b9games">
+<a  href="https://github.com/heitorbrunini/b9games/blob/master/LICENSE">
+<img  alt="License"  src="https://img.shields.io/github/license/joaovictornsv/climate-app.svg">
+</a>
+</p>
+  
+<!-- Nav Menu -->
+<a  href=#telescope-tecnologias>Technologies</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<a href="#gift-contributing">Contributing</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<a  href="#memo-licença">License</a><br/><br/>
+<img  width="100%"  src="https://i.imgur.com/yFXccOq.png">
+<img  width="100%"  src="https://i.imgur.com/PgAnFdd.png">
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+### :telescope: Technologies
+- [NodeJS](https://nodejs.org)
+- [ReactJS](https://reactjs.org/)
+- [Javascript]
+- [Axios](https://github.com/axios/axios)
+- [ChakraUI](https://chakra-ui.com/)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### :information_source: How To Use
+  
+To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v10.16][nodejs] or higher + [Yarn v1.13][yarn] or higher installed on your computer.
+From your command line:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+# Clone this repository
+$ git clone https://github.com/heitorbrunini/b9games
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Go into the repository
+$ cd climate-app
 
-### `npm test`
+# Install dependencies for the frontend and run the server
+$ yarn install
+$ yarn start
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+---
 
-### `npm run build`
+### :gift: Contributing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Please make sure to update tests as appropriate.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### :memo: License
+- :balance_scale: MIT License - [About](https://github.com/heitorbrunini/b9games/blob/master/LICENSE)
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<div>
+  <img align="left" src="https://i.imgur.com/ufUYAFh.png" width=35 alt="Profile"/>
+  <sub>Made with 💙 by <a href="https://github.com/heitorbrunini">Heitor Brunini</a></sub>
+</div>
