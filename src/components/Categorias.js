@@ -1,42 +1,20 @@
-import { Stack, Button } from '@chakra-ui/react';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
-function Categorias({ Genres , setGenres }) {
-  let buttons = [];
-  let filter = [];
-
-  const handleButtonClick = (genre) => {
-    if (filter.length <= 3) {
-      if (filter.includes(genre)) {
-        filter = filter.filter((value) => value !== genre);
-        
-      } else if (filter.length < 3) {
-        filter.push(genre);
-        console.log(filter);
-      }
-    }
-    
-    
-  };
-
-  Genres.forEach((genre) => {
-    buttons.push(
-      <Button
-        key={genre}
-        colorScheme="green"
-        onClick={() => handleButtonClick(genre)}
-        variant={filter.includes(genre) ? 'solid' : 'outline'}
-      >
-        {genre}
-      </Button>
-    );
-  });
+function Categorias({responseData, setResponseData}) {
 
   return (
-    <Stack direction="row" spacing={4} align="center">
-      {buttons}
-    </Stack>
+    <nav class="navbar"  data-bs-theme="dark">
+      <form class="container-fluid justify-content-start">
+        <button class="btn btn-outline-success me-2" type="button">Main button</button>
+        <button class="btn btn-outline-success me-2" type="button">Main button</button>
+        <button class="btn btn-outline-success me-2" type="button">Main button</button>
+        <button class="btn btn-outline-success me-2" type="button">Main button</button>
+        <button class="btn btn-outline-success me-2" type="button">Main button</button>
+
+      </form>
+    </nav>
   );
 }
 
