@@ -32,7 +32,7 @@ From your command line:
 $ git clone https://github.com/heitorbrunini/b9games
 
 # Go into the repository
-$ cd climate-app
+$ cd b9games
 
 # Install dependencies for the frontend and run the server
 $ yarn install
