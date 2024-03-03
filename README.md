@@ -6,15 +6,6 @@
 <!-- Subtitle/Description -->
 <h4>B9 games é um site de redirecionamento para o site oficial de jogos famosos.</h4>
 <p>
-<!-- Image Shields -->
-<img  alt="Language Top"  src="https://img.shields.io/github/languages/top/heitorbrunini/b9games">
-<img  alt="Languages Count"  src="https://img.shields.io/github/languages/count/heitorbrunini/b9games">
-<img  alt="Last Commit"  src="https://img.shields.io/github/last-commit/heitorbrunini/b9games">
-<img  alt="Repo Size"  src="https://img.shields.io/github/repo-size/heitorbrunini/b9games">
-<a  href="https://github.com/heitorbrunini/b9games/blob/master/LICENSE">
-<img  alt="License"  src="https://img.shields.io/github/license/joaovictornsv/climate-app.svg">
-</a>
-</p>
   
 <!-- Nav Menu -->
 <a  href=#telescope-tecnologias>Technologies</a>&nbsp;&nbsp;|&nbsp;&nbsp;
